@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.UserDao">
+
+  	<select id="sel" parameterType="String" resultType="User">
+  		select * from user
+  	</select>
+
+	<select id="Login" resultType="User">
+		select * from user where jobnumber = #{jobnumber} and password = #{password}
+	</select>
+
+	<!-- 因为是int类型 所以要用int返回 -->
+	<select id="findUser" resultType="int">
+		select count(*) from user where jobnumber=#{jobnumber}
+	</select>
+
+	<select id="regist" resultType="User">
+		insert into user(jobnumber,password) values (#{jobnumber},#{password})
+	</select>
+
+	<update id="update">
+		UPDATE user SET password=#{password} WHERE id=#{id}
+	</update>
+
+	<select id="selid"  resultType="User">
+		select id from user where jobnumber=#{jobnumber}
+	</select>
+
+	<!--奖金管理-->
+	<select id="prizesel" resultType="Prize">
+		select * from prize
+	</select>
+
+	<insert id="addprize" >
+		INSERT INTO prize (prizename,prize,prizetime)VALUES(#{prizename},#{prize},#{prizetime})
+	</insert>
+
+	<update id="updateprize">
+		UPDATE prize SET prizename=#{prizename},prize=#{prize},prizetime=#{prizetime} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteprize" >
+		DELETE FROM prize WHERE id=#{id}
+	</delete>
+
+	<select id="updateprizesel"  resultType="Prize">
+		select * from prize where id=#{id}
+	</select>
+
+	<!--津贴管理-->
+	<select id="subsidysel" resultType="Subsidy">
+		select * from subsidy
+	</select>
+
+	<insert id="addsubsidy" >
+		INSERT INTO subsidy (subsidyname, subsidynumber,subsidytime)VALUES(#{subsidyname},#{subsidynumber},#{subsidytime})
+	</insert>
+
+	<update id="updatesubsidy">
+		UPDATE subsidy SET subsidyname=#{subsidyname},subsidynumber=#{subsidynumber},subsidytime=#{subsidytime} WHERE id=#{id}
+	</update>
+
+	<delete id="deletesubsidy" >
+		DELETE FROM subsidy WHERE id=#{id}
+	</delete>
+
+	<!--部门管理-->
+	<select id="updatesubsidysel"  resultType="Subsidy">
+		select * from subsidy where id=#{id}
+	</select>
+	<!--部门管理-->
+	<select id="departmentsel" resultType="Department">
+		select * from department
+	</select>
+
+	<insert id="adddepartment" >
+		INSERT INTO department (departmentname)VALUES(#{departmentname})
+	</insert>
+
+	<update id="updatedepartment">
+		UPDATE department SET departmentname=#{departmentname} WHERE id=#{id}
+	</update>
+
+	<delete id="deletedepartment" >
+		DELETE FROM department WHERE id=#{id}
+	</delete>
+
+	<select id="updatedepartmentsel"  resultType="Department">
+		select * from department where id=#{id}
+	</select>
+
+    <!--考勤管理-->
+	<select id="attendancesel" resultType="Attendance">
+		select * from attendance
+	</select>
+
+	<insert id="addattendance" >
+		INSERT INTO attendance (attendancename, percentage,attendancetime,deductions)VALUES(#{attendancename},#{percentage},#{attendancetime},#{deductions})
+	</insert>
+
+	<update id="updateattendance">
+		UPDATE attendance SET attendancename=#{attendancename},percentage=#{percentage},attendancetime=#{attendancetime},deductions=#{deductions} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteattendance" >
+		DELETE FROM attendance WHERE id=#{id}
+	</delete>
+
+	<select id="updateattendancesel"  resultType="Attendance">
+		select * from attendance where id=#{id}
+	</select>
+
+	<!--店铺管理-->
+	<select id="shopsel" resultType="Shop">
+		select * from shop
+	</select>
+
+	<insert id="addshop" >
+		INSERT INTO shop (shopname,area,isde,shopkeeper,remark)VALUES(#{shopname},#{area},#{isde},#{shopkeeper},#{remark})
+	</insert>
+
+	<update id="updateshop">
+		UPDATE shop SET shopname=#{shopname},area=#{area},isde=#{isde},shopkeeper=#{shopkeeper},remark=#{remark} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteshop" >
+		DELETE FROM shop WHERE id=#{id}
+	</delete>
+
+	<select id="updateshopsel"  resultType="Shop">
+		select * from shop where id=#{id}
+	</select>
+
+	<!--员工级别项管理-->
+	<select id="gradesel" resultType="Grade">
+		select * from grade
+	</select>
+
+	<insert id="addgrade" >
+		INSERT INTO grade (gradename)VALUES(#{gradename})
+	</insert>
+
+	<update id="updategrade">
+		UPDATE grade SET gradename=#{gradename} WHERE id=#{id}
+	</update>
+
+	<delete id="deletegrade" >
+		DELETE FROM grade WHERE id=#{id}
+	</delete>
+
+	<select id="updategradesel"  resultType="Grade">
+		select * from grade where id=#{id}
+	</select>
+
+	<!--员工管理-->
+	<select id="sel_message"  resultType="Test">
+		SELECT e.id,e.employeename,e.sex,e.state,e.location,e.number,e.email,g.gradename,d.departmentname,s.shopname,r.rolename,u.jobnumber,u.password FROM
+			employee e JOIN grade g ON e.id=g.id JOIN department d ON e.id=d.id JOIN shop s ON e.id=s.id JOIN role r ON e.id=r.id JOIN user u ON e.id=u.id
+	</select>
+
+	<insert id="addemployee">
+		INSERT INTO employee (employeename,sex,state,location,number,email)VALUES(#{employeename},#{sex},#{state},#{location},#{number},#{email})
+	</insert>
+	<insert id="adddepartments" >
+		INSERT INTO department (id,departmentname)VALUES(LAST_INSERT_ID(),#{departmentname})
+	</insert>
+	<insert id="addroles" >
+		INSERT INTO role (id,rolename)VALUES(LAST_INSERT_ID(),#{rolename})
+	</insert>
+	<insert id="addshops" >
+		INSERT INTO shop (id,shopname)VALUES(LAST_INSERT_ID(),#{shopname})
+	</insert>
+	<insert id="addgrades" >
+		INSERT INTO grade (id,gradename)VALUES(LAST_INSERT_ID(),#{gradename})
+	</insert>
+	<insert id="adduser" >
+		INSERT INTO user (id,jobnumber,password)VALUES(LAST_INSERT_ID(),#{jobnumber},#{password})
+	</insert>
+	<insert id="addhairsalarys">
+		INSERT INTO hairsalary (id,states)VALUE(LAST_INSERT_ID(),#{states})
+	</insert>
+
+	<update id="updateemployee">
+		UPDATE employee SET employeename=#{employeename},state=#{state},sex=#{sex},location=#{location},number=#{number},email=#{email} WHERE id=#{id}
+	</update>
+	<update id="updategrades">
+		UPDATE grade SET gradename=#{gradename} WHERE id=#{id}
+	</update>
+	<update id="updateshops">
+		UPDATE shop SET shopname=#{shopname} WHERE id=#{id}
+	</update>
+	<update id="updatedepartments">
+		UPDATE department SET departmentname=#{departmentname} WHERE id=#{id}
+	</update>
+	<update id="updateroles">
+		UPDATE role SET rolename=#{rolename} WHERE id=#{id}
+	</update>
+	<update id="updateuser">
+		UPDATE user SET jobnumber=#{jobnumber},password=#{password} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteemployee" >
+		DELETE FROM employee WHERE id=#{id}
+	</delete>
+	<delete id="deleteshops" >
+		DELETE FROM shop WHERE id=#{id}
+	</delete>
+	<delete id="deleteroles" >
+		DELETE FROM role WHERE id=#{id}
+	</delete>
+	<delete id="deletedepartments" >
+		DELETE FROM department WHERE id=#{id}
+	</delete>
+	<delete id="deletegrades" >
+		DELETE FROM grade WHERE id=#{id}
+	</delete>
+	<delete id="deleteuser" >
+		DELETE FROM user WHERE id=#{id}
+	</delete>
+
+	<select id="updateemployeesel"  resultType="Test">
+		select * from employee where id=#{id}
+	</select>
+	<select id="updateemployeesels"  resultType="User">
+		select * from user where id=#{id}
+	</select>
+
+	<!--角色管理-->
+	<select id="rolesel" resultType="Role">
+		select * from role
+	</select>
+
+	<insert id="addrole" >
+		INSERT INTO role (rolename)VALUES(#{rolename})
+	</insert>
+
+	<update id="updaterole">
+		UPDATE role SET rolename=#{rolename} WHERE id=#{id}
+	</update>
+
+	<delete id="deleterole" >
+		DELETE FROM role WHERE id=#{id}
+	</delete>
+
+	<select id="updaterolesel"  resultType="Role">
+		select * from role where id=#{id}
+	</select>
+
+	<!--权限设置-->
+	<select id="permissionssel"  resultType="Testone">
+		SELECT u.id,e.employeename,u.type FROM user u JOIN employee e ON u.id=e.id
+	</select>
+
+	<update id="updatepermissions">
+		UPDATE user SET type=#{type} WHERE id=#{id}
+	</update>
+
+	<select id="updatepermissionssel"  resultType="Testone">
+		SELECT e.employeename,u.type FROM user u JOIN employee e ON u.id=e.id WHERE u.id=#{u.id}
+	</select>
+
+	<!--员工补贴记录-->
+	<select id="subsidyrecordingsel"  resultType="Testtow">
+		SELECT e.id,u.jobnumber,e.employeename,s.subsidyname,s.subsidynumber,s.subsidytime FROM subsidy s JOIN user u ON s.id=u.id JOIN employee e ON s.id=e.id;
+	</select>
+
+<!--	<update id="updatesubsidyrecording">
+		UPDATE subsidyrecording SET subsidytime=#{subsidytime} WHERE id=#{id}
+	</update>
+	<update id="updatesubsidys">
+		UPDATE subsidy SET subsidyname=#{subsidyname},subsidynumber=#{subsidynumber} WHERE id=#{id}
+	</update>
+
+	<select id="updatesubsidyrecordingsel"  resultType="Testtow">
+		SELECT u.jobnumber,e.employeename,s.subsidyname,s.subsidynumber,r.subsidytime FROM subsidyrecording r JOIN user u ON r.id=u.id JOIN subsidy s ON r.id=s.id JOIN employee e ON r.id=e.id WHERE r.id=#{r.id}
+	</select>
+
+	<delete id="deletesubsidyrecording" >
+		DELETE FROM subsidyrecording WHERE id=#{id}
+	</delete>
+	<delete id="deletesubsidys" >
+		DELETE FROM subsidy WHERE id=#{id}
+	</delete>-->
+
+	<!--员工奖金记录-->
+	<select id="prizerecordingsel"  resultType="Testthree">
+		SELECT e.id,u.jobnumber,e.employeename,p.prizename,p.prize,p.prizetime FROM prize p JOIN user u ON p.id=u.id JOIN employee e ON p.id=e.id;
+	</select>
+
+	<!--<update id="updateprizerecording">
+		UPDATE prizerecording SET prizetime=#{prizetime} WHERE id=#{id}
+	</update>
+	<update id="updateprizes">
+		UPDATE prize SET prizename=#{prizename},prize=#{prize} WHERE id=#{id}
+	</update>
+
+	<select id="updateprizerecordingsel"  resultType="Testthree">
+		SELECT u.jobnumber,e.employeename,p.prizename,p.prize,r.prizetime FROM prizerecording r JOIN user u ON r.id=u.id JOIN prize p ON r.id=p.id JOIN employee e ON r.id=e.id WHERE r.id=#{r.id}
+	</select>
+
+	<delete id="deleteprizerecording">
+		DELETE FROM prizerecording WHERE id=#{id}
+	</delete>
+	<delete id="deleteprizes">
+		DELETE FROM prize WHERE id=#{id}
+	</delete>-->
+
+	<!--员工考勤记录-->
+	<select id="attendancerecordingsel"  resultType="Testfour">
+		SELECT e.id,u.jobnumber,e.employeename,a.attendancename,a.percentage,a.attendancetime,a.deductions FROM attendance a JOIN user u ON a.id=u.id JOIN employee e ON a.id=e.id;
+	</select>
+
+<!--	<update id="updateattendancerecording">
+		UPDATE attendancerecording SET attendancetime=#{attendancetime},deductions=#{deductions} WHERE id=#{id}
+	</update>
+	<update id="updateattendances">
+		UPDATE attendance SET attendancename=#{attendancename},percentage=#{percentage} WHERE id=#{id}
+	</update>
+
+	<select id="updateattendancerecordingsel"  resultType="Testfour">
+		SELECT r.id,u.jobnumber,e.employeename,a.attendancename,a.percentage,r.attendancetime,r.deductions FROM attendancerecording r JOIN user u ON r.id=u.id JOIN attendance a ON r.id=a.id JOIN employee e ON r.id=e.id WHERE r.id=#{r.id}
+	</select>
+
+	<delete id="deleteattendancerecording">
+		DELETE FROM attendancerecording WHERE id=#{id}
+	</delete>
+	<delete id="deleteattendances">
+		DELETE FROM attendance WHERE id=#{id}
+	</delete>-->
+
+	<!--员工工资信息表-->
+	<!--聚合函数要分组 不然只会展示第一条数据-->
+	<!--SELECT w.id,u.jobnumber,e.employeename,sp.shopname,g.gradename,w.foundationsalary,sy.subsidynumber,
+	p.prize,a.deductions,w.salarytime,SUM(w.foundationsalary+sy.subsidynumber+p.prize) 应发工资,SUM(w.foundationsalary+sy.subsidynumber+p.prize+a.deductions) 实发工资 FROM salary w JOIN employee e ON w.id=e.id JOIN shop sp ON w.id=sp.id JOIN grade g ON w.id=g.id JOIN subsidy sy ON w.id=sy.id
+	JOIN prize p ON w.id=p.id JOIN attendance a ON w.id=a.id JOIN user u ON w.id=u.id-->
+	<select id="salarysel"  resultType="Testfive">
+		SELECT w.id,u.jobnumber,e.employeename,sp.shopname,g.gradename,w.foundationsalary,sy.subsidynumber,
+			   p.prize,a.deductions,w.salarytime,SUM(w.foundationsalary+sy.subsidynumber+p.prize) m1
+		FROM salary w JOIN employee e ON w.id=e.id JOIN shop sp ON w.id=sp.id JOIN grade g ON w.id=g.id JOIN subsidy sy ON w.id=sy.id
+					  JOIN prize p ON w.id=p.id JOIN attendance a ON w.id=a.id JOIN user u ON w.id=u.id GROUP BY id
+	</select>
+
+	<!--员工发工资-->
+	<select id="hairsalarysel"  resultType="Testsix">
+		SELECT e.id,u.jobnumber,e.employeename,s.foundationsalary,s.salarytime,h.states FROM employee e JOIN user u ON e.id=u.id JOIN hairsalary h ON e.id = h.id JOIN salary s ON e.id=s.id
+	</select>
+
+<!--	<insert id="addhairsalary" >-->
+<!--		INSERT INTO hairsalary (basicsalaryremark)VALUES(#{basicsalaryremark})-->
+<!--	</insert>-->
+	<insert id="addsalary" >
+		INSERT INTO salary (foundationsalary,salarytime)VALUES(#{foundationsalary},#{salarytime})
+	</insert>
+
+	<select id="updatehairsalarysel"  resultType="Testsix">
+	SELECT h.id,u.jobnumber,e.employeename,w.foundationsalary,w.salarytime,h.states FROM hairsalary h JOIN user u ON h.id=u.id JOIN employee e ON h.id=e.id
+	JOIN salary w ON h.id=w.id WHERE e.id=#{e.id};
+	</select>
+
+	<update id="updatesalarys">
+		UPDATE salary SET foundationsalary=#{foundationsalary},salarytime=#{salarytime} WHERE id=#{id}
+	</update>
+
+	<update id="updatehairsalarystate">
+		UPDATE hairsalary SET states=1 WHERE id=#{id}
+	</update>
+
+	<!--工资表导出-->
+	<select id="payrolltablesel"  resultType="Testfive">
+	SELECT w.id,u.jobnumber,e.employeename,sp.shopname,g.gradename,w.foundationsalary,sy.subsidynumber,
+	p.prize,a.deductions,w.salarytime,SUM(w.foundationsalary+sy.subsidynumber+p.prize) 应发工资,SUM(w.foundationsalary+sy.subsidynumber+p.prize+a.deductions) 实发工资 FROM salary w JOIN employee e ON w.id=e.id JOIN shop sp ON w.id=sp.id JOIN grade g ON w.id=g.id JOIN subsidy sy ON w.id=sy.id
+	JOIN prize p ON w.id=p.id JOIN attendance a ON w.id=a.id JOIN user u ON w.id=u.id WHERE salarytime LIKE CONCAT('%',#{salarytime},'%')
+	</select>
+
+</mapper>
