@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>标题</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <style type="text/css">
     *{
@@ -19,6 +20,6 @@
 </style>
 </head>
 <body bgcolor="black">
-<p>企业信息管理系统</p>
+<p>工资管理系统</p>
 </body>
 </html>

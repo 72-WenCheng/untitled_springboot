@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>登录</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <style type="text/css">
 	#box

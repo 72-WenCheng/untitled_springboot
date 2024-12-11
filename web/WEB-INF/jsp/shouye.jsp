@@ -7,6 +7,7 @@
           content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
     <title>Test</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
     <script src = "../js/jquery-1.8.3.min.js"></script>
     <style>
         /*兼容浏览器*/
