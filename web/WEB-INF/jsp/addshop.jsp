@@ -33,7 +33,7 @@
     }
 </style>
 <script src="../js/jquery-1.8.3.min.js"></script>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <div id="all" style="text-align: center;font-size: 25px;font-family: 仿宋;color: white;">
     <span>你当前的位置：【参数管理】-【店铺管理】-【店铺项添加】</span>
     <form action="Addshop" method="post" name="tll" onsubmit="return false">

@@ -55,7 +55,7 @@
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
-            <param-value>UTF8</param-value>
+            <param-value>UTF-8</param-value>
         </init-param>
         <init-param>
             <param-name>forceEncoding</param-name>
@@ -75,4 +75,15 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/500.jsp</location>
+    </error-page>
+
+    <!-- 添加这个绝对排序配置 -->
+    <absolute-ordering>
+        <name>spring_web</name>
+        <others/>
+    </absolute-ordering>
 </web-app>

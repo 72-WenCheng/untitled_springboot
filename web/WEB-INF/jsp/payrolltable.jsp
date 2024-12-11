@@ -22,7 +22,7 @@
         color: white;
     }
 </style>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <form action="Payrolltable" method="post" style="font-size: 30px;text-align: center;font-family: 仿宋">
     <span style="color: white">导出月份：&nbsp;</span><input type="text" name="date" style="height: 32px;">&nbsp;&nbsp;&nbsp;<input id="" type="submit" value="导出" style="font-size: 19px;width: 70px;font-family: 仿宋;">
 </form>

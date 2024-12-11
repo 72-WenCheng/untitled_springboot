@@ -16,6 +16,6 @@
         background-size: 100% 100%;
     }
 </style>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 </body>
 </html>

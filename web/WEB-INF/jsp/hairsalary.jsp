@@ -46,7 +46,7 @@
     }
 </style>
 <script src="../js/jquery-1.8.3.min.js"></script>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <div id="all">
     <span>你当前的位置：【工资管理】-【员工发工资管理】</span>
     <table border="1" cellspacing="0" cellpadding="0" align="center">

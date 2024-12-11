@@ -43,7 +43,7 @@
         background-size: 100% 100%;
     }
 </style>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <div id="all">
     <span>你当前的位置：【员工管理】-【员工信息管理】</span>
     <table border="1" cellspacing="0" cellpadding="0" align="center">

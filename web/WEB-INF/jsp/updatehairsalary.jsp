@@ -32,7 +32,7 @@
     }
 </style>
 <script src="../js/jquery-1.8.3.min.js"></script>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <c:forEach items="${list}" var="c">
     <div id="all">
         <form action="updatehairsalarytll" method="post" name="tll" onsubmit="return false">

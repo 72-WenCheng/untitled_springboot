@@ -21,18 +21,6 @@ public class TestController {
     @Autowired
     private UserService userService;
 
-
-//    @RequestMapping(value = "/index", method = RequestMethod.GET)
-//    public String index() {
-//        return "hello";
-//    }
-
-//    public String index(Model model) {
-//        List<User> list = userService.sel();
-//        model.addAttribute("list", list);
-//        return "hello";
-//    }
-
     //登录表单提交
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public String Login(HttpServletRequest request) {

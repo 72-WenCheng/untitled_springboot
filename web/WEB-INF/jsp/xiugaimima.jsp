@@ -44,7 +44,7 @@
   }
 </style>
 <script src="../js/jquery-1.8.3.min.js"></script>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <div id="all">
   <span>你当前的位置：【系统管理】-【密码修改】</span>
   <div id="cll">
@@ -72,6 +72,8 @@
       alert("密码不能为空");
     }else if(pwd1==""){
       alert("确认密码不能为空")
+    }else if(pwd1!=pwd){
+      alert("确认密码不一致")
     }else{
       alert("修改成功！")
       document.tll.onsubmit="return turn"

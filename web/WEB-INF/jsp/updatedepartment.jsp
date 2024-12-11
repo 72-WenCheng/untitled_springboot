@@ -22,7 +22,7 @@
   }
 </style>
 <script src="../js/jquery-1.8.3.min.js"></script>
-<body background="../img/3.jpg">
+<body background="../img/str.jpg">
 <c:forEach items="${list}" var="c">
   <div id="all" style="font-size: 25px;text-align: center;font-family: 仿宋;color: white;">
     <span>你当前的位置：【参数管理】-【部门管理】-【部门项修改】</span>

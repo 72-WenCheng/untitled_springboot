@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     public void regist(String jobnumber, int password){
         userDao.regist(jobnumber, password);
     }
+
     //奖金管理
     @Override
     public List<Prize> prizesel(){
